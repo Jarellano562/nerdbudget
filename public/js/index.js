@@ -14,8 +14,20 @@ fetch("/api/transaction")
         populateChart();
     });
 
-function populateTotal() {
-    // reduce transaction amounts to a single total value
+// function roughScale(x, base) {
+//     const parsed = parseInt(x, base);
+//     if (isNaN(parsed)) { return 0; }
+//     return parsed * 100;
+// }
+
+// console.log(roughScale(' 0xF', 16));
+// // expected output: 1500
+
+// console.log(roughScale('321', 2));
+// // expected output: 0z
+
+
+function populateTotal() { // reduce transaction amounts to a single total value    
     let total = transactions.reduce((total, t) => {
         return total + parseInt(t.value);
     }, 0);
@@ -28,8 +40,7 @@ function populateTable() {
     let tbody = document.querySelector("#tbody");
     tbody.innerHTML = "";
 
-    transactions.forEach(transaction => {
-        // create and populate a table row
+    transactions.forEach(transaction => { // create and populate a table row
         let tr = document.createElement("tr");
         tr.innerHTML = `
       <td>${transaction.name}</td>
@@ -71,7 +82,7 @@ function populateChart() {
             datasets: [{
                 label: "Total Over Time",
                 fill: true,
-                backgroundColor: "#6666ff",
+                backgroundColor: "#00a2ff",
                 data
             }]
         }
@@ -134,20 +145,20 @@ function sendTransaction(isAdding) {
                 amountEl.value = "";
             }
         })
-        .catch(err => {
-            // fetch failed, so save in indexed db
+        .catch(err => { // fetch failed, so save in indexed db
             saveRecord(transaction);
-
             // clear form
             nameEl.value = "";
             amountEl.value = "";
         });
 }
 
-document.querySelector("#add-btn").onclick = function () {
+document.querySelector(`#add-btn`).addEventListener(`click`, event => {
+    event.preventDefault();
     sendTransaction(true);
-};
+});
 
-document.querySelector("#sub-btn").onclick = function () {
+document.querySelector(`#sub-btn`).addEventListener(`click`, event => {
+    event.preventDefault();
     sendTransaction(false);
-};
+});
