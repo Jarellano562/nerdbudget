@@ -6,7 +6,7 @@
 // const FILES_TO_CACHE = [ //that it would hold all the images that were in the webpage 
 //                         //that this is the stuff that will keep in the webpage when the
 //                         //the user is offline 
-const APP_PREFIX = 'BudgetTracker';
+const APP_PREFIX = 'BudgetTracker-';
 const VERSION = 'version_01';
 const CACHE_NAME = APP_PREFIX + VERSION;
 

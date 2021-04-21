@@ -41,7 +41,7 @@
             "type": "image/png"
         }
     ],
-    "name": "NerdBudget",
+    "name": "Budget-Tracker",
     "short_name": "NB",
     "display": "standalone",
     "start_url": ".",
